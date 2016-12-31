@@ -8,14 +8,18 @@ def run_vnc(request):
 
     # token = token  # Used to determine the different access machine
     view_only = request.GET.get('view_only', 'false') # False can control the or true can only view
-    token = request.GET.get('token')
-
+    #token = request.GET.get('token')
+    token = 'abc'
     # The proxy server IP and port, this usually use school server LAN IP (127.0.0.1, 6080 is the default port)
-    host = '127.0.0.1'
+    client = request.environ['REMOTE_ADDR']
+    host = request.get_host().split(':')[0]
+    print "VNC Connection Request: " + client + " => " + host
+    #host = '127.0.0.1'
+    #host = '54.174.48.230'
     port = settings.VNC_PROXY_PORT
 
     # context = Context({'token':token, 'host':host, 'port': port, 'view_only':view_only})
     context_dict = {'token':token, 'host': host, 'port': port, 'view_only': view_only}
 
     return render(request, 'vnc_auto.html', context_dict)
-    # return render(request, 'vnc.html')
+    #return render(request, 'vnc.html')
