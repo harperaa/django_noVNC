@@ -14,8 +14,7 @@ def run_vnc(request):
     client = request.environ['REMOTE_ADDR']
     host = request.get_host().split(':')[0]
     print "VNC Connection Request: " + client + " => " + host
-    #host = '127.0.0.1'
-    #host = '54.174.48.230'
+    
     port = settings.VNC_PROXY_PORT
 
     # context = Context({'token':token, 'host':host, 'port': port, 'view_only':view_only})
